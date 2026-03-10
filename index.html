@@ -10,13 +10,13 @@
 body{
 margin:0;
 font-family:Georgia,serif;
-background:linear-gradient(180deg,#0a0620,#1a0f35,#2b1250);
+background:linear-gradient(180deg,#09051d,#1a0f35,#2b1250);
 color:white;
 text-align:center;
 overflow-x:hidden;
 }
 
-/* ESTRELLAS */
+/* CIELO */
 
 .stars{
 position:fixed;
@@ -24,7 +24,7 @@ width:100%;
 height:100%;
 background:url("https://www.transparenttextures.com/patterns/stardust.png");
 animation:moveStars 60s linear infinite;
-opacity:0.6;
+opacity:.6;
 z-index:-2;
 }
 
@@ -33,53 +33,32 @@ from{background-position:0 0;}
 to{background-position:1000px 1000px;}
 }
 
-/* ESTRELLAS FUGACES */
+/* CONSTELACION */
 
-.shootingStar{
+.constellation{
 position:fixed;
-width:2px;
-height:100px;
-background:linear-gradient(-45deg,white,transparent);
-animation:shoot 2s linear;
-}
-
-@keyframes shoot{
-0%{
-transform:translate(0,0) rotate(45deg);
-opacity:1;
-}
-100%{
-transform:translate(-600px,600px) rotate(45deg);
-opacity:0;
-}
-}
-
-/* ROSAS */
-
-.rose{
-position:fixed;
-top:-10px;
-font-size:20px;
-animation:fall linear infinite;
-}
-
-@keyframes fall{
-0%{transform:translateY(-10px) rotate(0);}
-100%{transform:translateY(110vh) rotate(360deg);}
-}
-
-/* CORAZONES */
-
-.touchHeart{
-position:fixed;
-font-size:18px;
-animation:floatHeart 2s forwards;
+top:120px;
+left:50%;
+transform:translateX(-50%);
+width:300px;
+height:250px;
 pointer-events:none;
 }
 
-@keyframes floatHeart{
-0%{opacity:1;transform:scale(0.5);}
-100%{opacity:0;transform:translateY(-80px) scale(1.5);}
+.starDot{
+width:4px;
+height:4px;
+background:white;
+border-radius:50%;
+position:absolute;
+box-shadow:0 0 8px white;
+}
+
+.starLine{
+position:absolute;
+height:1px;
+background:white;
+opacity:.5;
 }
 
 /* SOBRE */
@@ -102,7 +81,6 @@ border-left:100px solid transparent;
 border-right:100px solid transparent;
 border-bottom:60px solid #e48;
 top:0;
-left:0;
 }
 
 .envelope.open{
@@ -153,12 +131,47 @@ display:none;
 box-shadow:0 0 35px rgba(200,120,255,0.3);
 }
 
-/* DEDICATORIA */
+/* ROSAS */
 
-.dedication{
-margin-top:40px;
-font-size:22px;
-color:#ffd9ff;
+.rose{
+position:fixed;
+top:-10px;
+font-size:20px;
+animation:fall linear infinite;
+}
+
+@keyframes fall{
+0%{transform:translateY(-10px) rotate(0);}
+100%{transform:translateY(110vh) rotate(360deg);}
+}
+
+/* ESTRELLA FUGAZ */
+
+.shootingStar{
+position:fixed;
+width:2px;
+height:100px;
+background:linear-gradient(-45deg,white,transparent);
+animation:shoot 2s linear;
+}
+
+@keyframes shoot{
+0%{transform:translate(0,0) rotate(45deg);}
+100%{transform:translate(-600px,600px) rotate(45deg);opacity:0;}
+}
+
+/* CORAZONES TOQUE */
+
+.touchHeart{
+position:fixed;
+font-size:18px;
+animation:heartFloat 2s forwards;
+pointer-events:none;
+}
+
+@keyframes heartFloat{
+0%{opacity:1;transform:scale(.5);}
+100%{opacity:0;transform:translateY(-80px) scale(1.4);}
 }
 
 /* TE AMO */
@@ -167,31 +180,38 @@ color:#ffd9ff;
 font-size:50px;
 margin:60px 0;
 color:#ffb6ff;
-text-shadow:
-0 0 10px #ff9dff,
-0 0 20px #ff6bff,
-0 0 40px #ff4dff;
+text-shadow:0 0 20px #ff6bff,0 0 40px #ff4dff;
 display:none;
-animation:glow 2s infinite alternate;
-}
-
-@keyframes glow{
-from{text-shadow:0 0 10px #ff9dff;}
-to{text-shadow:0 0 40px #ff4dff;}
 }
 
 /* ROSA FINAL */
 
 .finalRose{
 font-size:40px;
-margin-top:20px;
 display:none;
-animation:roseAppear 2s;
 }
 
-@keyframes roseAppear{
-from{opacity:0;transform:scale(0);}
-to{opacity:1;transform:scale(1);}
+/* FRASE FINAL */
+
+.forever{
+font-size:32px;
+margin-top:30px;
+letter-spacing:3px;
+opacity:0;
+transform:translateY(30px);
+}
+
+.forever.show{
+animation:cinema 3s forwards;
+}
+
+@keyframes cinema{
+to{
+opacity:1;
+transform:translateY(0);
+letter-spacing:6px;
+text-shadow:0 0 20px #ff9dff;
+}
 }
 
 </style>
@@ -201,10 +221,13 @@ to{opacity:1;transform:scale(1);}
 
 <div class="stars"></div>
 
+<div class="constellation" id="constellation"></div>
+
 <div class="envelope" id="envelope" onclick="openLetter()"></div>
 
 <h1 class="title" id="title"></h1>
 <div class="name">Para VALERIA PETRO VILLAZÓN 💜</div>
+
 <div class="letter" id="letter">
 
 <p>Amor mío,</p>
@@ -254,15 +277,12 @@ Ojalá mañana te sientas mucho mejor.
 Con todo mi cariño,<br>
 tu chico que te ama muchísimo. 💌
 </p>
-
-<div class="dedication">
-“Si pudiera pedirle algo al universo esta noche, sería que cada vez que te duela algo, yo pueda estar a tu lado para abrazarte… porque mi lugar en el mundo siempre será contigo.”
-</div>
-
+<P><strong> JUAN KALETH MENDOZA PRIMERA 💜</strong></P>
 </div>
 
 <div class="finalLove" id="love">TE AMO MUCHÍSIMO MI VIDA ENTERA</div>
-<div class="finalRose" id="finalRose">🌹</div>
+<div class="finalRose" id="rose">🌹</div>
+<div class="forever" id="forever">Siempre contigo</div>
 
 <script>
 
@@ -271,10 +291,10 @@ tu chico que te ama muchísimo. 💌
 const text="Una carta para ti MI NIÑA LINDA";
 const title=document.getElementById("title");
 
-text.split("").forEach((char,i)=>{
+text.split("").forEach((c,i)=>{
 const span=document.createElement("span");
-span.textContent=char;
-span.style.animationDelay=i*0.05+"s";
+span.textContent=c;
+span.style.animationDelay=i*.05+"s";
 title.appendChild(span);
 });
 
@@ -291,6 +311,8 @@ document.getElementById("letter").style.display="block";
 
 setTimeout(()=>{
 document.getElementById("love").style.display="block";
+document.getElementById("rose").style.display="block";
+document.getElementById("forever").classList.add("show");
 },4000)
 
 },1000)
@@ -299,67 +321,54 @@ document.getElementById("love").style.display="block";
 
 /* ROSAS */
 
-function createRose(){
-const rose=document.createElement("div");
-rose.classList.add("rose");
-rose.innerHTML="🌹";
-rose.style.left=Math.random()*100+"vw";
-rose.style.animationDuration=6+Math.random()*4+"s";
-document.body.appendChild(rose);
-
-setTimeout(()=>rose.remove(),10000);
-}
-
-setInterval(createRose,500);
+setInterval(()=>{
+const r=document.createElement("div");
+r.className="rose";
+r.innerHTML="🌹";
+r.style.left=Math.random()*100+"vw";
+r.style.animationDuration=6+Math.random()*4+"s";
+document.body.appendChild(r);
+setTimeout(()=>r.remove(),10000);
+},500);
 
 /* ESTRELLAS FUGACES */
 
-function shootingStar(){
+setInterval(()=>{
+const s=document.createElement("div");
+s.className="shootingStar";
+s.style.left=Math.random()*window.innerWidth+"px";
+s.style.top=Math.random()*200+"px";
+document.body.appendChild(s);
+setTimeout(()=>s.remove(),2000);
+},6000);
 
+/* CORAZONES TOQUE */
+
+document.addEventListener("click",e=>{
+const h=document.createElement("div");
+h.className="touchHeart";
+h.innerHTML="💜";
+h.style.left=e.clientX+"px";
+h.style.top=e.clientY+"px";
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),2000);
+});
+
+/* CONSTELACION CORAZON */
+
+const heartStars=[
+[150,40],[120,60],[180,60],[100,100],[200,100],
+[150,150],[130,170],[170,170],[150,200]
+];
+
+const container=document.getElementById("constellation");
+
+heartStars.forEach(p=>{
 const star=document.createElement("div");
-star.classList.add("shootingStar");
-
-star.style.left=Math.random()*window.innerWidth+"px";
-star.style.top=Math.random()*200+"px";
-
-document.body.appendChild(star);
-
-setTimeout(()=>star.remove(),2000);
-
-}
-
-setInterval(shootingStar,6000);
-
-/* CORAZONES AL TOCAR */
-
-document.addEventListener("touchstart",createHeart);
-document.addEventListener("click",createHeart);
-
-function createHeart(e){
-
-const heart=document.createElement("div");
-heart.classList.add("touchHeart");
-heart.innerHTML="💜";
-
-heart.style.left=e.clientX+"px";
-heart.style.top=e.clientY+"px";
-
-document.body.appendChild(heart);
-
-setTimeout(()=>heart.remove(),2000);
-
-}
-
-/* ROSA FINAL AL SCROLL */
-
-window.addEventListener("scroll",()=>{
-
-if((window.innerHeight + window.scrollY) >= document.body.offsetHeight-50){
-
-document.getElementById("finalRose").style.display="block";
-
-}
-
+star.className="starDot";
+star.style.left=p[0]+"px";
+star.style.top=p[1]+"px";
+container.appendChild(star);
 });
 
 </script>
