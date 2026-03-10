@@ -3,33 +3,83 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Carta para ti</title>
+<title>LUNES 9 DE MARZO DE 2026</title>
 
 <style>
 
 body{
 margin:0;
-padding:0;
-background:linear-gradient(180deg,#0f0820,#1d0f35,#2a1250);
-font-family: "Georgia", serif;
+font-family:Georgia,serif;
+background:linear-gradient(180deg,#0a0620,#1a0f35,#2b1250);
 color:white;
 text-align:center;
 overflow-x:hidden;
 }
 
-/* ROSAS CAYENDO */
+/* ESTRELLAS */
+
+.stars{
+position:fixed;
+width:100%;
+height:100%;
+background:url("https://www.transparenttextures.com/patterns/stardust.png");
+animation:moveStars 60s linear infinite;
+opacity:0.6;
+z-index:-2;
+}
+
+@keyframes moveStars{
+from{background-position:0 0;}
+to{background-position:1000px 1000px;}
+}
+
+/* ESTRELLAS FUGACES */
+
+.shootingStar{
+position:fixed;
+width:2px;
+height:100px;
+background:linear-gradient(-45deg,white,transparent);
+animation:shoot 2s linear;
+}
+
+@keyframes shoot{
+0%{
+transform:translate(0,0) rotate(45deg);
+opacity:1;
+}
+100%{
+transform:translate(-600px,600px) rotate(45deg);
+opacity:0;
+}
+}
+
+/* ROSAS */
 
 .rose{
 position:fixed;
 top:-10px;
 font-size:20px;
 animation:fall linear infinite;
-opacity:0.8;
 }
 
 @keyframes fall{
-0%{transform:translateY(-10px) rotate(0deg);}
+0%{transform:translateY(-10px) rotate(0);}
 100%{transform:translateY(110vh) rotate(360deg);}
+}
+
+/* CORAZONES */
+
+.touchHeart{
+position:fixed;
+font-size:18px;
+animation:floatHeart 2s forwards;
+pointer-events:none;
+}
+
+@keyframes floatHeart{
+0%{opacity:1;transform:scale(0.5);}
+100%{opacity:0;transform:translateY(-80px) scale(1.5);}
 }
 
 /* SOBRE */
@@ -42,17 +92,17 @@ margin:150px auto;
 position:relative;
 cursor:pointer;
 border-radius:6px;
-box-shadow:0 10px 25px rgba(0,0,0,0.4);
+box-shadow:0 10px 30px rgba(0,0,0,0.4);
 }
 
 .envelope:before{
 content:"";
 position:absolute;
-top:0;
-left:0;
 border-left:100px solid transparent;
 border-right:100px solid transparent;
 border-bottom:60px solid #e48;
+top:0;
+left:0;
 }
 
 .envelope.open{
@@ -63,30 +113,28 @@ transition:1s;
 /* TITULO */
 
 .title{
-font-size:38px;
-margin-top:50px;
-letter-spacing:2px;
+font-size:40px;
+margin-top:40px;
 display:none;
 }
 
 .title span{
 opacity:0;
-animation:appear 0.05s forwards;
+animation:appear .05s forwards;
 }
 
 @keyframes appear{
 to{opacity:1;}
 }
 
-/* NOMBRE METALICO */
+/* NOMBRE */
 
 .name{
 font-size:28px;
-margin-top:10px;
-background:linear-gradient(90deg,#ff9dff,#c67bff,#ffb6ff);
+background:linear-gradient(90deg,#ff9dff,#c77dff,#ffb6ff);
 -webkit-background-clip:text;
 color:transparent;
-text-shadow:0 0 10px rgba(255,170,255,0.7);
+text-shadow:0 0 12px rgba(255,150,255,0.9);
 display:none;
 }
 
@@ -95,22 +143,55 @@ display:none;
 .letter{
 width:80%;
 max-width:750px;
-margin:50px auto;
+margin:40px auto;
 background:rgba(255,255,255,0.08);
 padding:40px;
 border-radius:20px;
 line-height:1.8;
 font-size:18px;
 display:none;
-box-shadow:0 0 30px rgba(200,120,255,0.3);
-backdrop-filter:blur(6px);
+box-shadow:0 0 35px rgba(200,120,255,0.3);
 }
+
+/* DEDICATORIA */
 
 .dedication{
 margin-top:40px;
 font-size:22px;
 color:#ffd9ff;
-text-shadow:0 0 10px rgba(255,200,255,0.7);
+}
+
+/* TE AMO */
+
+.finalLove{
+font-size:50px;
+margin:60px 0;
+color:#ffb6ff;
+text-shadow:
+0 0 10px #ff9dff,
+0 0 20px #ff6bff,
+0 0 40px #ff4dff;
+display:none;
+animation:glow 2s infinite alternate;
+}
+
+@keyframes glow{
+from{text-shadow:0 0 10px #ff9dff;}
+to{text-shadow:0 0 40px #ff4dff;}
+}
+
+/* ROSA FINAL */
+
+.finalRose{
+font-size:40px;
+margin-top:20px;
+display:none;
+animation:roseAppear 2s;
+}
+
+@keyframes roseAppear{
+from{opacity:0;transform:scale(0);}
+to{opacity:1;transform:scale(1);}
 }
 
 </style>
@@ -118,11 +199,12 @@ text-shadow:0 0 10px rgba(255,200,255,0.7);
 
 <body>
 
-<div class="envelope" onclick="openLetter()" id="envelope"></div>
+<div class="stars"></div>
 
-<h1 class="title" id="title"></h1>
+<div class="envelope" id="envelope" onclick="openLetter()"></div>
+
+<h1 class="title" id="title">PARA TI MI NIÑA LINDA</h1>
 <div class="name">Para VALERIA PETRO VILLAZÓN 💜</div>
-
 <div class="letter" id="letter">
 
 <p>Amor mío,</p>
@@ -172,16 +254,19 @@ Ojalá mañana te sientas mucho mejor.
 Con todo mi cariño,<br>
 tu chico que te ama muchísimo. 💌
 </p>
-<P><strong>JUAN KALETH MENDOZA PRIMERA 💜</strong></P>
+
 <div class="dedication">
-“Si pudiera pedirle algo al universo esta noche, sería que cada vez que te duela algo, yo pueda estar a tu lado para abrazarte… porque mi lugar en el mundo siempre será contigo <STRONG>MI NIÑA LINDA.</STRONG>”
+“Si pudiera pedirle algo al universo esta noche, sería que cada vez que te duela algo, yo pueda estar a tu lado para abrazarte… porque mi lugar en el mundo siempre será contigo.”
 </div>
 
 </div>
+
+<div class="finalLove" id="love">TE AMO MUCHÍSIMO MI VIDA ENTERA</div>
+<div class="finalRose" id="finalRose">🌹</div>
 
 <script>
 
-/* TITULO LETRA POR LETRA */
+/* TITULO */
 
 const text="Una carta para ti";
 const title=document.getElementById("title");
@@ -203,6 +288,11 @@ setTimeout(()=>{
 title.style.display="block";
 document.querySelector(".name").style.display="block";
 document.getElementById("letter").style.display="block";
+
+setTimeout(()=>{
+document.getElementById("love").style.display="block";
+},4000)
+
 },1000)
 
 }
@@ -210,25 +300,69 @@ document.getElementById("letter").style.display="block";
 /* ROSAS */
 
 function createRose(){
-
 const rose=document.createElement("div");
 rose.classList.add("rose");
 rose.innerHTML="🌹";
-
 rose.style.left=Math.random()*100+"vw";
 rose.style.animationDuration=6+Math.random()*4+"s";
-
 document.body.appendChild(rose);
 
-setTimeout(()=>{
-rose.remove();
-},10000);
-
+setTimeout(()=>rose.remove(),10000);
 }
 
 setInterval(createRose,500);
 
+/* ESTRELLAS FUGACES */
+
+function shootingStar(){
+
+const star=document.createElement("div");
+star.classList.add("shootingStar");
+
+star.style.left=Math.random()*window.innerWidth+"px";
+star.style.top=Math.random()*200+"px";
+
+document.body.appendChild(star);
+
+setTimeout(()=>star.remove(),2000);
+
+}
+
+setInterval(shootingStar,6000);
+
+/* CORAZONES AL TOCAR */
+
+document.addEventListener("touchstart",createHeart);
+document.addEventListener("click",createHeart);
+
+function createHeart(e){
+
+const heart=document.createElement("div");
+heart.classList.add("touchHeart");
+heart.innerHTML="💜";
+
+heart.style.left=e.clientX+"px";
+heart.style.top=e.clientY+"px";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>heart.remove(),2000);
+
+}
+
+/* ROSA FINAL AL SCROLL */
+
+window.addEventListener("scroll",()=>{
+
+if((window.innerHeight + window.scrollY) >= document.body.offsetHeight-50){
+
+document.getElementById("finalRose").style.display="block";
+
+}
+
+});
+
 </script>
 
 </body>
-  </html>
+</html>
