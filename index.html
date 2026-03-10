@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carta para ti</title>
+
+<style>
+
+body{
+margin:0;
+padding:0;
+background:linear-gradient(180deg,#0f0820,#1d0f35,#2a1250);
+font-family: "Georgia", serif;
+color:white;
+text-align:center;
+overflow-x:hidden;
+}
+
+/* ROSAS CAYENDO */
+
+.rose{
+position:fixed;
+top:-10px;
+font-size:20px;
+animation:fall linear infinite;
+opacity:0.8;
+}
+
+@keyframes fall{
+0%{transform:translateY(-10px) rotate(0deg);}
+100%{transform:translateY(110vh) rotate(360deg);}
+}
+
+/* SOBRE */
+
+.envelope{
+width:200px;
+height:120px;
+background:#d36;
+margin:150px auto;
+position:relative;
+cursor:pointer;
+border-radius:6px;
+box-shadow:0 10px 25px rgba(0,0,0,0.4);
+}
+
+.envelope:before{
+content:"";
+position:absolute;
+top:0;
+left:0;
+border-left:100px solid transparent;
+border-right:100px solid transparent;
+border-bottom:60px solid #e48;
+}
+
+.envelope.open{
+transform:scale(0);
+transition:1s;
+}
+
+/* TITULO */
+
+.title{
+font-size:38px;
+margin-top:50px;
+letter-spacing:2px;
+display:none;
+}
+
+.title span{
+opacity:0;
+animation:appear 0.05s forwards;
+}
+
+@keyframes appear{
+to{opacity:1;}
+}
+
+/* NOMBRE METALICO */
+
+.name{
+font-size:28px;
+margin-top:10px;
+background:linear-gradient(90deg,#ff9dff,#c67bff,#ffb6ff);
+-webkit-background-clip:text;
+color:transparent;
+text-shadow:0 0 10px rgba(255,170,255,0.7);
+display:none;
+}
+
+/* CARTA */
+
+.letter{
+width:80%;
+max-width:750px;
+margin:50px auto;
+background:rgba(255,255,255,0.08);
+padding:40px;
+border-radius:20px;
+line-height:1.8;
+font-size:18px;
+display:none;
+box-shadow:0 0 30px rgba(200,120,255,0.3);
+backdrop-filter:blur(6px);
+}
+
+.dedication{
+margin-top:40px;
+font-size:22px;
+color:#ffd9ff;
+text-shadow:0 0 10px rgba(255,200,255,0.7);
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="envelope" onclick="openLetter()" id="envelope"></div>
+
+<h1 class="title" id="title"></h1>
+<div class="name">Para VALERIA PETRO VILLAZÓN 💜</div>
+
+<div class="letter" id="letter">
+
+<p>Amor mío,</p>
+
+<p>
+Esta noche de lunes 9 de marzo, mientras pienso en ti, siento la necesidad de escribirte algo que salga directo de mi corazón. Hoy, cuando estabas conmigo y los cólicos te estaban haciendo daño, hubo un momento en el que me sentí un poco impotente… porque lo único que quería era quitarte ese dolor, abrazarte fuerte y hacer que desapareciera. Ojalá existiera una forma de tomar tu dolor y quedármelo yo, solo para verte tranquila y en paz.
+</p>
+
+<p>
+Pero aunque no pueda hacer magia para quitarte los cólicos, quiero que sepas algo muy importante: nunca estás sola cuando te sientes así. Si te duele, aquí estoy. Si necesitas que te abrace, aquí estoy. Si solo quieres quedarte en silencio, también aquí estoy. Porque amarte no es solo en los momentos fáciles, también es en los días en los que tu cuerpo te duele, en los días en los que necesitas más cariño, más paciencia y más comprensión.
+</p>
+
+<p>
+Hoy, cuando te veía así, solo pensaba en lo mucho que me importas. Pensaba en lo especial que eres para mí y en lo increíble que es poder estar a tu lado incluso en momentos tan simples pero tan reales como ese. Porque amar a alguien no es solo compartir risas o planes bonitos; amar a alguien también es querer cuidarlo cuando no se siente bien.
+</p>
+
+<p>
+Quiero que recuerdes algo siempre: para mí eres una mujer increíblemente fuerte. Tu corazón, tu forma de ser, tu sonrisa… todo en ti tiene algo que me enamora cada día un poco más. Y aunque hoy haya sido un día en el que tu cuerpo te hizo sentir mal, eso no cambia ni un poquito lo hermosa, valiosa y especial que eres.
+</p>
+
+<p>
+A veces la vida nos pone momentos incómodos o dolorosos, pero incluso en esos momentos yo me siento agradecido de poder estar contigo. Porque si hay algo que tengo claro, es que mi lugar favorito siempre será a tu lado, cuidándote, apoyándote y queriéndote de la forma más sincera que puedo.
+</p>
+
+<p>
+Me encanta pensar en todo lo que todavía nos espera. Las noches hablando hasta tarde, los abrazos largos, las risas por cosas tontas, los momentos tranquilos en los que simplemente estamos juntos sin necesidad de decir nada. Todo eso contigo se siente diferente… se siente especial.
+</p>
+
+<p>
+Esta noche solo quiero que descanses, que intentes relajarte y que recuerdes algo muy simple pero muy verdadero: te quiero muchísimo. Te quiero con tus días felices, con tus días cansados, con tus días difíciles… con todo lo que eres. Porque tu forma de existir en mi vida ya es algo que hace que todo tenga más sentido.
+</p>
+
+<p>
+Si ahora mismo pudiera estar contigo, probablemente te abrazaría despacio, te diría que todo va a estar bien, y me quedaría contigo el tiempo que hiciera falta hasta que te sintieras mejor. Porque cuando se trata de ti, mi corazón siempre quiere cuidar, proteger y amar.
+</p>
+
+<p>
+Así que esta noche, mientras el mundo sigue su ritmo normal, yo solo pienso en algo: lo afortunado que soy de tenerte en mi vida. Y si hay algo que quiero que nunca olvides es esto… pase lo que pase, en los días buenos y en los difíciles, siempre voy a estar para ti.
+</p>
+
+<p>
+Descansa, amor mío.  
+Ojalá mañana te sientas mucho mejor.
+</p>
+
+<p>
+Con todo mi cariño,<br>
+tu chico que te ama muchísimo. 💌
+</p>
+<P><strong>JUAN KALETH MENDOZA PRIMERA 💜</strong></P>
+<div class="dedication">
+“Si pudiera pedirle algo al universo esta noche, sería que cada vez que te duela algo, yo pueda estar a tu lado para abrazarte… porque mi lugar en el mundo siempre será contigo <STRONG>MI NIÑA LINDA.</STRONG>”
+</div>
+
+</div>
+
+<script>
+
+/* TITULO LETRA POR LETRA */
+
+const text="Una carta para ti";
+const title=document.getElementById("title");
+
+text.split("").forEach((char,i)=>{
+const span=document.createElement("span");
+span.textContent=char;
+span.style.animationDelay=i*0.05+"s";
+title.appendChild(span);
+});
+
+/* ABRIR SOBRE */
+
+function openLetter(){
+
+document.getElementById("envelope").classList.add("open");
+
+setTimeout(()=>{
+title.style.display="block";
+document.querySelector(".name").style.display="block";
+document.getElementById("letter").style.display="block";
+},1000)
+
+}
+
+/* ROSAS */
+
+function createRose(){
+
+const rose=document.createElement("div");
+rose.classList.add("rose");
+rose.innerHTML="🌹";
+
+rose.style.left=Math.random()*100+"vw";
+rose.style.animationDuration=6+Math.random()*4+"s";
+
+document.body.appendChild(rose);
+
+setTimeout(()=>{
+rose.remove();
+},10000);
+
+}
+
+setInterval(createRose,500);
+
+</script>
+
+</body>
+  </html>
